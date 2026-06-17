@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, effect, untracked } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -66,15 +66,27 @@ export class LoginComponent {
   loading = signal(false);
   error = signal<string | null>(null);
 
+  constructor() {
+    // Handle return from Google redirect (resolves with the signed-in user)
+    this.auth.handleRedirectResult();
+
+    // If already authenticated (persistent session or after redirect), go to dashboard
+    effect(() => {
+      const u = this.auth.user();
+      if (u !== undefined && u !== null) {
+        untracked(() => this.router.navigate(['/dashboard']));
+      }
+    });
+  }
+
   async signIn(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
     try {
       await this.auth.signInWithGoogle();
-      this.router.navigate(['/dashboard']);
+      // Page will redirect to Google — loading stays true until navigation away
     } catch {
       this.error.set('Accesso fallito. Riprova.');
-    } finally {
       this.loading.set(false);
     }
   }
