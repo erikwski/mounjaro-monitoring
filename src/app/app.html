@@ -1,0 +1,40 @@
+<div class="app-shell">
+  @if (showNav()) {
+    <mat-toolbar color="primary" class="top-bar">
+      <span>Mounjaro Monitor</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="auth.signOut()" aria-label="Esci">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+  }
+
+  <main class="content" [class.with-nav]="showNav()">
+    <router-outlet />
+  </main>
+
+  @if (showNav()) {
+    <nav class="bottom-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+      <a routerLink="/daily-log" routerLinkActive="active">
+        <mat-icon>edit_note</mat-icon>
+        <span>Diario</span>
+      </a>
+      <a routerLink="/injection" routerLinkActive="active">
+        <mat-icon>vaccines</mat-icon>
+        <span>Iniezione</span>
+      </a>
+      <a routerLink="/measurements" routerLinkActive="active">
+        <mat-icon>straighten</mat-icon>
+        <span>Misure</span>
+      </a>
+      <a routerLink="/progress" routerLinkActive="active">
+        <mat-icon>trending_down</mat-icon>
+        <span>Grafici</span>
+      </a>
+    </nav>
+  }
+</div>

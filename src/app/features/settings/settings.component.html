@@ -1,0 +1,75 @@
+<div class="page-container">
+  <h2>Impostazioni</h2>
+
+  <!-- Profile info -->
+  @if (profile()) {
+    <mat-card class="profile-card">
+      <mat-card-header>
+        <mat-icon mat-card-avatar>person</mat-icon>
+        <mat-card-title>{{ profile()!.firstName }} {{ profile()!.lastName }}</mat-card-title>
+        <mat-card-subtitle>{{ profile()!.sex }} · {{ profile()!.heightCm }} cm</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  }
+
+  <!-- Notifications -->
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>notifications</mat-icon>
+      <mat-card-title>Notifiche push</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if (notifEnabled()) {
+        <p class="success-text"><mat-icon>check_circle</mat-icon> Notifiche attive</p>
+      } @else {
+        <button mat-raised-button color="primary" (click)="enableNotifications()"
+                [disabled]="requestingNotif()">
+          {{ requestingNotif() ? 'Attivazione...' : 'Attiva notifiche' }}
+        </button>
+      }
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Settings form -->
+  <form [formGroup]="form" (ngSubmit)="save()" class="settings-form">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Orari promemoria</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-fields">
+        <mat-form-field>
+          <mat-label>Mattina</mat-label>
+          <input matInput type="time" formControlName="notifyMorningTime" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Sera</mat-label>
+          <input matInput type="time" formControlName="notifyEveningTime" />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Terapia</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="card-fields">
+        <mat-form-field>
+          <mat-label>Dose attuale (mg)</mat-label>
+          <input matInput type="number" formControlName="doseMg" step="0.5" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Obiettivo peso (kg)</mat-label>
+          <input matInput type="number" formControlName="targetWeightKg" />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="saving()">
+      {{ saving() ? 'Salvataggio...' : 'Salva impostazioni' }}
+    </button>
+  </form>
+
+  <button mat-stroked-button color="warn" (click)="signOut()" class="signout-btn">
+    <mat-icon>logout</mat-icon> Esci dall'account
+  </button>
+</div>

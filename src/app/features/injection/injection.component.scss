@@ -1,0 +1,32 @@
+.page-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 { margin: 0 0 16px; }
+}
+
+.already-done {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: #e8f5e9;
+  border-radius: 8px;
+  color: #2e7d32;
+  margin-bottom: 16px;
+
+  mat-icon { color: #4caf50; }
+}
+
+.info-card { margin-bottom: 16px; p { margin: 4px 0; } }
+
+.injection-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.full-width { width: 100%; }
+
+button[type="submit"] { width: 100%; padding: 12px; }

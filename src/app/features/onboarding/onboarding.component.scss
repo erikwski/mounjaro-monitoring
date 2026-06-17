@@ -1,0 +1,63 @@
+.onboarding-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.onboarding-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #00838f;
+}
+
+.step-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.full-width { width: 100%; }
+
+.sex-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.sex-label { color: rgba(0, 0, 0, 0.6); font-size: 0.875rem; }
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.section-hint {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  margin: 4px 0;
+}
+
+.habits-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  padding-bottom: 8px;
+}

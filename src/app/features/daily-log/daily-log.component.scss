@@ -1,0 +1,29 @@
+.page-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 { margin: 0 0 4px; }
+  .date-label { color: #666; margin-bottom: 16px; }
+}
+
+.log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.full-width { width: 100%; }
+
+mat-card-content { padding-top: 12px !important; }
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+}

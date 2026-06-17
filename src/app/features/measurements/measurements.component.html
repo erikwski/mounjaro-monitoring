@@ -1,0 +1,96 @@
+<div class="page-container">
+  <h2>Misure mensili</h2>
+
+  <mat-tab-group>
+    <mat-tab label="Inserisci">
+      <div class="tab-content">
+        <p class="month-label">{{ currentMonth }}</p>
+
+        <form [formGroup]="form" (ngSubmit)="save()" class="measurements-form">
+          <mat-form-field class="full-width">
+            <mat-label>Peso (kg)</mat-label>
+            <input matInput type="number" formControlName="weightKg" step="0.1" />
+            <span matSuffix>kg</span>
+          </mat-form-field>
+
+          <p class="section-label">Circonferenze (cm)</p>
+          <div class="measurements-grid">
+            <mat-form-field>
+              <mat-label>Collo</mat-label>
+              <input matInput type="number" formControlName="collo" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Spalle</mat-label>
+              <input matInput type="number" formControlName="spalle" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Petto</mat-label>
+              <input matInput type="number" formControlName="petto" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Sotto Petto</mat-label>
+              <input matInput type="number" formControlName="sottoPetto" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Vita</mat-label>
+              <input matInput type="number" formControlName="vita" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Addome</mat-label>
+              <input matInput type="number" formControlName="addome" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Fianchi</mat-label>
+              <input matInput type="number" formControlName="fianchi" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Coscia</mat-label>
+              <input matInput type="number" formControlName="coscia" />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Braccio</mat-label>
+              <input matInput type="number" formControlName="braccio" />
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="full-width">
+            <mat-label>Note</mat-label>
+            <textarea matInput formControlName="notes" rows="2"></textarea>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || saving()">
+            {{ saving() ? 'Salvataggio...' : 'Salva misure' }}
+          </button>
+        </form>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Storico">
+      <div class="tab-content">
+        @if (history().length === 0) {
+          <p class="empty-state">Nessuna misurazione salvata.</p>
+        } @else {
+          <div class="history-list">
+            @for (m of history(); track m.id) {
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>{{ m.id }}</mat-card-title>
+                  <mat-card-subtitle>{{ m.weightKg }} kg</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="history-grid">
+                    @for (key of bodyKeys; track key) {
+                      <span class="hist-item">
+                        {{ measurementLabels[key] }}: <strong>{{ m[key] }}</strong> cm
+                      </span>
+                    }
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            }
+          </div>
+        }
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

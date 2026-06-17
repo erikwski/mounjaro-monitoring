@@ -1,0 +1,35 @@
+<div class="page-container">
+  <h2>Progressi</h2>
+
+  <mat-tab-group>
+    <mat-tab label="Peso">
+      <div class="tab-content">
+        @if (measurements().length === 0) {
+          <p class="empty-state">Ancora nessun dato. Inizia a registrare le misure mensili!</p>
+        } @else {
+          <div echarts [options]="weightChartOption()" class="chart"></div>
+        }
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Glicemia">
+      <div class="tab-content">
+        @if (recentLogs().length === 0) {
+          <p class="empty-state">Ancora nessun dato. Inizia a registrare il log giornaliero!</p>
+        } @else {
+          <div echarts [options]="glucoseChartOption()" class="chart"></div>
+        }
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Misure">
+      <div class="tab-content">
+        @if (measurements().length < 2) {
+          <p class="empty-state">Servono almeno 2 rilevazioni mensili per il confronto.</p>
+        } @else {
+          <div echarts [options]="measurementsRadarOption()" class="chart"></div>
+        }
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

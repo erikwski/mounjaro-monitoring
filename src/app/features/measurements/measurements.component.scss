@@ -1,0 +1,50 @@
+.page-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  h2 { margin: 0 0 8px; }
+}
+
+.tab-content {
+  padding: 16px 0;
+}
+
+.month-label, .section-label {
+  color: #666;
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+}
+
+.measurements-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.full-width { width: 100%; }
+
+button[type="submit"] { width: 100%; padding: 12px; }
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  font-size: 0.875rem;
+}
+
+.hist-item { color: #555; }
+
+.empty-state { color: #999; text-align: center; padding: 24px; }

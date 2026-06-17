@@ -1,0 +1,62 @@
+<div class="dashboard">
+  <div class="welcome-banner">
+    <h2>Ciao, {{ profile()?.firstName ?? '' }}! 👋</h2>
+    <p>
+      @if (daysSinceStart() !== null) {
+        Giorno <strong>{{ daysSinceStart() }}</strong> del tuo percorso · Settimana {{ currentWeek }}
+      }
+    </p>
+  </div>
+
+  <!-- Today's log status -->
+  <mat-card class="status-card" routerLink="/daily-log">
+    <mat-card-header>
+      <mat-icon mat-card-avatar [class.done]="logComplete()">
+        {{ logComplete() ? 'check_circle' : 'pending' }}
+      </mat-icon>
+      <mat-card-title>Log di oggi</mat-card-title>
+      <mat-card-subtitle>{{ today | date:'EEEE d MMMM':'':'it' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="log-items">
+        <span class="log-item" [class.done]="todayLog()?.glucoseMorning != null">
+          <mat-icon>bloodtype</mat-icon> Glicemia mattina
+        </span>
+        <span class="log-item" [class.done]="todayLog()?.waterLiters != null">
+          <mat-icon>water_drop</mat-icon> Acqua
+        </span>
+        <span class="log-item" [class.done]="todayLog()?.sleepHours != null">
+          <mat-icon>bedtime</mat-icon> Sonno
+        </span>
+        <span class="log-item" [class.done]="todayLog()?.glucoseEvening != null">
+          <mat-icon>bloodtype</mat-icon> Glicemia sera
+        </span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary">
+        {{ logComplete() ? 'Modifica log' : 'Completa log' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Quick actions -->
+  <div class="quick-actions">
+    <mat-card class="action-card" routerLink="/injection">
+      <mat-icon>vaccines</mat-icon>
+      <span>Registra iniezione</span>
+    </mat-card>
+    <mat-card class="action-card" routerLink="/measurements">
+      <mat-icon>straighten</mat-icon>
+      <span>Aggiorna misure</span>
+    </mat-card>
+    <mat-card class="action-card" routerLink="/progress">
+      <mat-icon>trending_down</mat-icon>
+      <span>Vedi grafici</span>
+    </mat-card>
+    <mat-card class="action-card" routerLink="/settings">
+      <mat-icon>settings</mat-icon>
+      <span>Impostazioni</span>
+    </mat-card>
+  </div>
+</div>

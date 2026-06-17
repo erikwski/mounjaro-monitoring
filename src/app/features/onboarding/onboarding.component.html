@@ -1,0 +1,188 @@
+<div class="onboarding-container">
+  <h1 class="onboarding-title">Benvenuta! Configuriamo il tuo profilo</h1>
+
+  <mat-stepper linear #stepper>
+    <!-- Step 1: Personal data -->
+    <mat-step [stepControl]="profileForm" label="Dati personali">
+      <form [formGroup]="profileForm" class="step-form">
+        <div class="form-row">
+          <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="firstName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Cognome</mat-label>
+            <input matInput formControlName="lastName" />
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field>
+            <mat-label>Altezza (cm)</mat-label>
+            <input matInput type="number" formControlName="heightCm" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data di nascita</mat-label>
+            <input matInput [matDatepicker]="birthPicker" formControlName="birthDate" />
+            <mat-datepicker-toggle matSuffix [for]="birthPicker" />
+            <mat-datepicker #birthPicker />
+          </mat-form-field>
+        </div>
+
+        <mat-radio-group formControlName="sex" class="sex-group">
+          <label class="sex-label">Sesso:</label>
+          <mat-radio-button value="F">Femmina</mat-radio-button>
+          <mat-radio-button value="M">Maschio</mat-radio-button>
+        </mat-radio-group>
+
+        <div class="step-actions">
+          <button mat-raised-button color="primary" matStepperNext [disabled]="profileForm.invalid">
+            Avanti
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Therapy -->
+    <mat-step [stepControl]="therapyForm" label="Terapia">
+      <form [formGroup]="therapyForm" class="step-form">
+        <mat-form-field>
+          <mat-label>Giorno dell'iniezione</mat-label>
+          <mat-select formControlName="injectionDay">
+            @for (day of injectionDays; track day[0]) {
+              <mat-option [value]="+day[0]">{{ day[1] }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field>
+            <mat-label>Dose attuale (mg)</mat-label>
+            <input matInput type="number" formControlName="doseMg" step="0.5" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Inizio terapia</mat-label>
+            <input matInput [matDatepicker]="therapyPicker" formControlName="therapyStartDate" />
+            <mat-datepicker-toggle matSuffix [for]="therapyPicker" />
+            <mat-datepicker #therapyPicker />
+          </mat-form-field>
+        </div>
+
+        <div class="form-row">
+          <mat-form-field>
+            <mat-label>Obiettivo peso (kg)</mat-label>
+            <input matInput type="number" formControlName="targetWeightKg" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Entro il</mat-label>
+            <input matInput [matDatepicker]="targetPicker" formControlName="targetDate" />
+            <mat-datepicker-toggle matSuffix [for]="targetPicker" />
+            <mat-datepicker #targetPicker />
+          </mat-form-field>
+        </div>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="therapyForm.invalid">
+            Avanti
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 3: Initial measurements -->
+    <mat-step [stepControl]="measurementsForm" label="Misure iniziali">
+      <form [formGroup]="measurementsForm" class="step-form">
+        <mat-form-field class="full-width">
+          <mat-label>Peso attuale (kg)</mat-label>
+          <input matInput type="number" formControlName="weightKg" step="0.1" />
+        </mat-form-field>
+
+        <p class="section-hint">Circonferenze in cm:</p>
+        <div class="measurements-grid">
+          <mat-form-field>
+            <mat-label>Collo</mat-label>
+            <input matInput type="number" formControlName="collo" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Spalle</mat-label>
+            <input matInput type="number" formControlName="spalle" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Petto</mat-label>
+            <input matInput type="number" formControlName="petto" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Sotto Petto</mat-label>
+            <input matInput type="number" formControlName="sottoPetto" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Vita</mat-label>
+            <input matInput type="number" formControlName="vita" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Addome</mat-label>
+            <input matInput type="number" formControlName="addome" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Fianchi</mat-label>
+            <input matInput type="number" formControlName="fianchi" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Coscia</mat-label>
+            <input matInput type="number" formControlName="coscia" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Braccio</mat-label>
+            <input matInput type="number" formControlName="braccio" />
+            <span matSuffix>cm</span>
+          </mat-form-field>
+        </div>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="measurementsForm.invalid">
+            Avanti
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 4: Lifestyle -->
+    <mat-step [stepControl]="habitsForm" label="Abitudini">
+      <form [formGroup]="habitsForm" class="step-form">
+        <div class="habits-row">
+          <mat-checkbox formControlName="smoker">Fumatore/Fumatrice</mat-checkbox>
+          <mat-checkbox formControlName="alcohol">Consumo di alcolici</mat-checkbox>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Alimentazione</mat-label>
+          <mat-select formControlName="dietQuality">
+            <mat-option value="equilibrata">Equilibrata</mat-option>
+            <mat-option value="poco_equilibrata">Poco equilibrata</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Indietro</button>
+          <button mat-raised-button color="accent" (click)="complete()" [disabled]="saving()">
+            @if (saving()) {
+              <mat-spinner diameter="20" />
+            } @else {
+              Inizia il percorso!
+            }
+          </button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
