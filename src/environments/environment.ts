@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'YOUR_API_KEY',
-    authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_PROJECT_ID.firebasestorage.app',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID',
-    vapidKey: 'YOUR_VAPID_KEY',
+    apiKey: 'AIzaSyDr8kIiGnZrPsw20XMnzd3c3wgQ8VD50gw',
+    authDomain: 'mounjaro-monitoring.firebaseapp.com',
+    projectId: 'mounjaro-monitoring',
+    storageBucket: 'mounjaro-monitoring.firebasestorage.app',
+    messagingSenderId: '1061137935547',
+    appId: '1:1061137935547:web:6fdd6d85edf3db82034d9e',
+    vapidKey: 'BHYSovbQ9_106aAl0sE8uOA6oFg7YhCKy__Kfna8cY_1TaPKFQPipDA--4UKl9xDyOZjZxPkF4skDpaGTB2yCwY',
   },
 };

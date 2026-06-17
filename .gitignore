@@ -47,6 +47,7 @@ Thumbs.db
 .env.local
 .env.*.local
 .env.example
+mounjaro-monitoring-firebase-adminsdk-fbsvc-d7776f1d3a.json
 
 # Firebase service account (never commit)
 *service-account*.json
