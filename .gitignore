@@ -46,6 +46,7 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+.env.example
 
 # Firebase service account (never commit)
 *service-account*.json
