@@ -47,6 +47,9 @@ Thumbs.db
 .env.local
 .env.*.local
 .env.example
+
+# Generated at build time by scripts/set-env.mjs
+src/environments/environment.prod.ts
 mounjaro-monitoring-firebase-adminsdk-fbsvc-d7776f1d3a.json
 
 # Firebase service account (never commit)
