@@ -1,0 +1,31 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read/write their own profile
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      // Monthly measurements
+      match /measurements/{month} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Daily logs
+      match /dailyLogs/{date} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // Injection logs
+      match /injections/{date} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
