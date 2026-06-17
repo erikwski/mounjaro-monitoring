@@ -85,8 +85,13 @@ export class LoginComponent {
     try {
       await this.auth.signInWithGoogle();
       // Page will redirect to Google — loading stays true until navigation away
-    } catch {
-      this.error.set('Accesso fallito. Riprova.');
+    } catch (err: unknown) {
+      const code = (err as { code?: string })?.code ?? '';
+      if (code === 'auth/unauthorized-domain') {
+        this.error.set('Dominio non autorizzato. Aggiungi il sito ai domini autorizzati in Firebase Console.');
+      } else {
+        this.error.set(`Accesso fallito: ${code || 'errore sconosciuto'}`);
+      }
       this.loading.set(false);
     }
   }
