@@ -67,10 +67,16 @@ export class LoginComponent {
   error = signal<string | null>(null);
 
   constructor() {
-    // Handle return from Google redirect (resolves with the signed-in user)
-    this.auth.handleRedirectResult();
+    this.auth.handleRedirectResult().then(errCode => {
+      if (errCode) {
+        if (errCode === 'auth/unauthorized-domain') {
+          this.error.set('Dominio non autorizzato. Aggiungi il sito ai domini autorizzati in Firebase Console.');
+        } else {
+          this.error.set(`Errore accesso Google: ${errCode}`);
+        }
+      }
+    });
 
-    // If already authenticated (persistent session or after redirect), go to dashboard
     effect(() => {
       const u = this.auth.user();
       if (u !== undefined && u !== null) {

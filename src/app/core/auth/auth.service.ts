@@ -26,13 +26,14 @@ export class AuthService {
     await signInWithRedirect(this.auth, new GoogleAuthProvider());
   }
 
-  async handleRedirectResult(): Promise<void> {
-    if (!isPlatformBrowser(this.platformId)) return;
+  async handleRedirectResult(): Promise<string | null> {
+    if (!isPlatformBrowser(this.platformId)) return null;
     try {
       const result = await getRedirectResult(this.auth);
       if (result?.user) this.router.navigate(['/dashboard']);
-    } catch {
-      // no pending redirect result
+      return null;
+    } catch (err: unknown) {
+      return (err as { code?: string })?.code ?? 'auth/unknown';
     }
   }
 
